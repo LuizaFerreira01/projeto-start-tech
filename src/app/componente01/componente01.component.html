@@ -1,0 +1,62 @@
+<form [formGroup]="formulario">
+    
+    <!--Nome-->
+    @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched) {
+        <p class="alert alert-warning">Preencha o nome</p>
+    }
+    @if (formulario.get('nome').hasError('minlength') && formulario.get('nome').touched) {
+        <p class="alert alert-warning">O nome precisa de no mínimo 3 caracteres</p>
+    }
+    <input type="text"    formControlName="nome"    placeholder="Nome"  class="form-control">
+    
+    <!--Idade-->
+    @if (formulario.get('idade').hasError('required') && formulario.get('idade').touched) {
+        <p class="alert alert-warning">Preencha a idade</p>
+    }
+    @if (formulario.get('idade').hasError('min') && formulario.get('idade').touched) {
+        <p class="alert alert-warning">A idade não pode ser menor que 0</p>
+    }
+    @if (formulario.get('idade').hasError('max') && formulario.get('idade').touched) {
+        <p class="alert alert-warning">A idade não pode ser maior que 120</p>
+    }
+    <input type="number"  formControlName="idade"   placeholder="Idade" class="form-control">
+    
+    <!--Email-->
+    @if (formulario.get('email').hasError('required') && formulario.get('email').touched) {
+        <p class="alert alert-warning">Preencha o email</p>
+    }
+    <input type="text"    formControlName="email"   placeholder="email" class="form-control">
+
+
+    @if (btnCadastrar) {
+        <input type="button" value="Cadastrar"  class="btn btn-success" (click)="cadastrar()" [disabled]="formulario.invalid">
+    }
+
+</form>
+
+    <div>
+        <!--<input 
+            type="button" 
+            value="Cadastrar" 
+            class="btn btn-success" 
+            [disabled]="formulario.invalid" 
+            *ngIf="btnCadastrar"
+        > -->
+        <div *ngIf="mensagem" class="alert alert-info mt-2">
+            {{ mensagem }}
+        </div>
+       
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
